@@ -1,4 +1,6 @@
 import os
+
+from django import views
 os.environ.setdefault('DJANGO_SETTINGS_MODULE','tango_with_django_project.settings')
 
 import django
@@ -8,25 +10,33 @@ from rango.models import Category, Page
 def populate():
     python_pages = [
         {'title': 'Official Python Tutorial',
-         'url':'http://docs.pythin.org/3/tutorial/'},
+         'url':'http://docs.python.org/3/tutorial/',
+         'views': 67},
         {'title':'How to Think like a Computer Scientist',
-         'url':'http://www.greenteapress.com/thinkpython/'},
+         'url':'http://www.greenteapress.com/thinkpython/',
+         'views':90},
         {'title':'Learn Python in 10 Minutes',
-         'url':'http://www.korokithakis.net/tutorials/pythin/'}
+         'url':'http://www.korokithakis.net/tutorials/python/',
+        'views':90}
     ]
     django_pages = [
         {'title':'Official Django Tutorial',
-         'url':'https://docs.djangoproject.com/en/2.1/intro/tutorial01/'},
+         'url':'https://docs.djangoproject.com/en/2.1/intro/tutorial01/',
+         'views':90},
         {'title':'Django Rocks',
-         'url':'http://www.djangorocks.com/'},
+         'url':'http://www.djangorocks.com/',
+         'views':90},
         {'title':'How to Tango with Django',
-         'url':'http://www.tangowithdjango.com/'} ]
+         'url':'http://www.tangowithdjango.com/',
+         'views':90} ]
 
     other_pages = [
         {'title':'Bottle',
-         'url':'http://bottlepy.org/docs/dev/'},
+         'url':'http://bottlepy.org/docs/dev/',
+         'views':90},
         {'title':'Flask',
-         'url':'http://flask.pocoo.org'} ]
+         'url':'http://flask.pocoo.org',
+         'views':90} ]
 
     cats = {
             'Python': {
@@ -49,7 +59,7 @@ def populate():
     for cat, cat_data in cats.items():
         c = add_cat(cat, cat_data['views'],cat_data['likes'])
         for p in cat_data['pages']:
-            add_page(c,p['title'],p['url'])
+            add_page(c,p['title'],p['url'],p['views'])
 
     # Print out the categories we have added.
     for c in Category.objects.all():
@@ -74,4 +84,3 @@ def add_cat(name, views=0, likes=0):
 if __name__ == '__main__':
     print('Starting Rango population script...')
     populate()
-
