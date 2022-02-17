@@ -1,6 +1,3 @@
-from operator import mod
-from turtle import title
-from unicodedata import category
 from django import views
 from django.db import models
 from django.template.defaultfilters import slugify
